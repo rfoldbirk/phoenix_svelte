@@ -5,27 +5,16 @@ window.onload = () => {
 		const name = elem.getAttribute('data-name')
 		const parsed_props = JSON.parse(elem.getAttribute('data-props'))
 
-		const props_to_watch = []
-
-		for (const key of Object.keys(parsed_props))
-			props_to_watch.push(key)
-
-		const props = {
-			"props_to_watch": props_to_watch ? props_to_watch:[],
-			"component": name,
-			"props": parsed_props ? parsed_props:{}
-		}
-		
-
 		const svelte_app = require(`./svelte/${ name }`)
-		if (!svelte_app) {
-			return
-		}
+		if (!svelte_app) return
 
-		const _app = new svelte_app.default({
-			target: document.body,
+		const app = new svelte_app.default({
+			target: elem,
 			props: parsed_props,
 		})
+
+		elem.removeAttribute('id')
+		elem.removeAttribute('data-props')
 	})
 }
 
