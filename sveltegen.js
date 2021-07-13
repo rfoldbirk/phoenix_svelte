@@ -13,7 +13,6 @@ window.onload = () => {
 			props: parsed_props,
 		})
 
-		elem.removeAttribute('id')
 		elem.removeAttribute('data-props')
 	})
 }
