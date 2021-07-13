@@ -27,12 +27,9 @@ Derefter skal du finde filen `lib/din_app_web/views/page_view.ex` og tilføje:
 defmodule DinAppWeb.PageView do
   # ...
   def svelte(name, props) do
-    id = generate_id(name)
-
     raw """
     <div 
       class="svelte-component"
-      id=#{id}
       data-name=#{name}
       data-props=#{json(props)}
       >
@@ -51,14 +48,6 @@ defmodule DinAppWeb.PageView do
         IO.inspect(reason)
         ""
     end
-  end
-
-  defp generate_id(name) do
-    "svelte-#{name}-#{get_random_numbers()}"
-  end
-
-  defp get_random_numbers do
-    Enum.random(0..1000000000000)
   end
 end
 ```
